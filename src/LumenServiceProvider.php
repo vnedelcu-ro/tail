@@ -41,8 +41,10 @@ class LumenServiceProvider extends \Illuminate\Support\ServiceProvider {
 
         //Add App facade if is lumen >5.2
         if ($this->version() >= 5.2) {
-            class_alias('Illuminate\Support\Facades\App', 'App');
-        }       
+            if (!class_exists('App')) {
+                class_alias('Illuminate\Support\Facades\App', 'App');
+           }
+        }
     }
 
     /** 
